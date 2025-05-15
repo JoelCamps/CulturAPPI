@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="925b86d5a3d44683ad0524ea50dc8633" Name="Diagram1">
+        <EntityTypeShape EntityType="CulturAppModel.Booking" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CulturAppModel.Events" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CulturAppModel.Inventory" Width="1.5" PointX="6" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="CulturAppModel.Inventory_room" Width="1.5" PointX="6" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CulturAppModel.Rooms" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CulturAppModel.Type_event" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CulturAppModel.Users" Width="1.5" PointX="4.25" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="CulturAppModel.fk_booking_event" ManuallyRouted="false" />
+        <AssociationConnector Association="CulturAppModel.fk_booking_user" ManuallyRouted="false" />
+        <AssociationConnector Association="CulturAppModel.fk_event_room" ManuallyRouted="false" />
+        <AssociationConnector Association="CulturAppModel.fk_event_type" ManuallyRouted="false" />
+        <AssociationConnector Association="CulturAppModel.fk_inventory" ManuallyRouted="false" />
+        <AssociationConnector Association="CulturAppModel.fk_inventory_room" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
