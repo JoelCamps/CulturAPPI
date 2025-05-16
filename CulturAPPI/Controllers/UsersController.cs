@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Http.Description;
 using CulturAPPI.Models;
@@ -90,6 +91,7 @@ namespace CulturAPPI.Controllers
             {
                 return BadRequest();
             }
+
             var existingUser = await db.Users
                 .FirstOrDefaultAsync(b => b.id == id);
 
@@ -121,15 +123,35 @@ namespace CulturAPPI.Controllers
         // Crea un nuevo usuario en la base de datos.
         public async Task<IHttpActionResult> PostUsers(Users users)
         {
-            if (!ModelState.IsValid)
+
+            var existingUser = await db.Users
+                .FirstOrDefaultAsync(u => u.email == users.email);
+
+            if (existingUser != null)
             {
-                return BadRequest(ModelState);
+                return BadRequest("El usuario ya existe.");
             }
 
-            db.Users.Add(users);
+            var newUser = new Users
+            {
+                name = users.name,
+                surname = users.surname,
+                email = users.email,
+                password = users.password,
+                type = users.type,
+                active = users.active
+            };
+
+            var validationErrors = db.GetValidationErrors().ToList();
+            if (validationErrors.Any())
+            {
+                return BadRequest("Error en la validación del modelo.");
+            }
+
+            db.Users.Add(newUser);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = users.id }, users);
+            return CreatedAtRoute("DefaultApi", new { id = newUser.id }, newUser);
         }
 
         // Verifica si existe un usuario con el ID dado.
