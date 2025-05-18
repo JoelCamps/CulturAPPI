@@ -14,6 +14,7 @@ namespace CulturAPPI.Controllers
 
         // GET: api/TypeEvent/5
         [ResponseType(typeof(Type_event))]
+        // Obtiene la lista de tipos de eventos y la devuelve como DTO.
         public async Task<IHttpActionResult> GetType_event()
         {
             IHttpActionResult result;

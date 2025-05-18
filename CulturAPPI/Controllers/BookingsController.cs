@@ -25,6 +25,7 @@ namespace CulturAPPI.Controllers
         [HttpGet]
         [Route("api/Bookings/Users/{id_user}")]
         [ResponseType(typeof(Booking))]
+        // Devuelve las reservas activas de un usuario específico con datos del evento y sala.
         public async Task<IHttpActionResult> GetBookingUser(int id_user)
         {
             IHttpActionResult result;
@@ -79,6 +80,7 @@ namespace CulturAPPI.Controllers
         [HttpGet]
         [Route("api/Bookings/Events/{id_event}")]
         [ResponseType(typeof(Booking))]
+        // Devuelve las reservas activas de un evento específico.
         public async Task<IHttpActionResult> GetBookingEvent(int id_event)
         {
             IHttpActionResult result;
@@ -102,6 +104,7 @@ namespace CulturAPPI.Controllers
 
         // PUT: api/Bookings/5
         [ResponseType(typeof(void))]
+        // Actualiza el estado (activo/inactivo) de una reserva existente.
         public async Task<IHttpActionResult> PutBooking(Booking booking)
         {
             if (!ModelState.IsValid)
@@ -143,6 +146,7 @@ namespace CulturAPPI.Controllers
 
         // POST: api/Bookings
         [ResponseType(typeof(Booking))]
+        // Crea una nueva reserva en la base de datos.
         public async Task<IHttpActionResult> PostBooking(Booking booking)
         {
             if (!ModelState.IsValid)
@@ -171,6 +175,7 @@ namespace CulturAPPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = booking.user_id }, booking);
         }
 
+        // Verifica si existe una reserva para un usuario específico.
         private bool BookingExists(int id)
         {
             return db.Booking.Count(e => e.user_id == id) > 0;

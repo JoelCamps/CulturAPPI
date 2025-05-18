@@ -23,6 +23,7 @@ namespace CulturAPPI.Controllers
 
         [HttpGet]
         [Route("api/Users/{email}/{password}")]
+        // Devuelve un usuario si el email y contraseña coinciden y no es de tipo "super".
         public async Task<IHttpActionResult> GetUser(string email, string password)
         {
             IHttpActionResult result;
@@ -46,6 +47,7 @@ namespace CulturAPPI.Controllers
 
         [HttpPut]
         [Route("api/Users/Contraseña/{email}/{password}")]
+        // Actualiza la contraseña de un usuario según su email.
         public async Task<IHttpActionResult> PutUsersPassword(string email, string password)
         {
             IHttpActionResult result;
@@ -76,6 +78,7 @@ namespace CulturAPPI.Controllers
         // PUT: api/Users/5
         [HttpPut]
         [ResponseType(typeof(void))]
+        // Actualiza los datos (nombre, apellido, email) de un usuario por su ID.
         public async Task<IHttpActionResult> PutUser(int id, Users user)
         {
             if (!ModelState.IsValid)
@@ -115,6 +118,7 @@ namespace CulturAPPI.Controllers
 
         // POST: api/Users
         [ResponseType(typeof(Users))]
+        // Crea un nuevo usuario en la base de datos.
         public async Task<IHttpActionResult> PostUsers(Users users)
         {
             if (!ModelState.IsValid)
@@ -128,6 +132,7 @@ namespace CulturAPPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = users.id }, users);
         }
 
+        // Verifica si existe un usuario con el ID dado.
         private bool UsersExists(int id)
         {
             return db.Users.Count(e => e.id == id) > 0;

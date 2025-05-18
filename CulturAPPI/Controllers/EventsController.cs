@@ -17,6 +17,7 @@ namespace CulturAPPI.Controllers
 
         // GET: api/Events
         [ResponseType(typeof(Events))]
+        // Obtiene todos los eventos activos y los devuelve como DTO con sus relaciones.
         public async Task<IHttpActionResult> GetEvents()
         {
             IHttpActionResult result;
@@ -62,6 +63,7 @@ namespace CulturAPPI.Controllers
 
         // POST: api/Events
         [ResponseType(typeof(Events))]
+        // Crea un nuevo evento a partir de un DTO recibido, convirtiendo fechas y guardando en la base de datos.
         public async Task<IHttpActionResult> PostEvents(EventDTO events)
         {
             if (!ModelState.IsValid)
@@ -69,7 +71,7 @@ namespace CulturAPPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            string formato = "yyyy-MM-dd HH:mm:ss.fff";
+            string formato = "yyyy-MM-dd HH:mm";
 
             DateTime.TryParseExact(events.Start_datetime, formato, CultureInfo.InvariantCulture,
                                     DateTimeStyles.None, out DateTime Start_datetime);

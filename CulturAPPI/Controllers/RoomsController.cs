@@ -14,6 +14,7 @@ namespace CulturAPPI.Controllers
 
         // GET: api/Rooms/
         [ResponseType(typeof(Rooms))]
+        // Obtiene la lista de salas y la devuelve como DTO.
         public async Task<IHttpActionResult> GetRooms()
         {
             IHttpActionResult result;
